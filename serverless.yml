@@ -1,0 +1,38 @@
+service: old-stuff-donation
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: java11
+  region: ap-southeast-1
+  timeout: 30
+  memorySize: 256
+  architecture: x86_64
+  versionFunctions: true
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - logs:CreateLogGroup
+            - logs:CreateLogStream
+            - logs:PutLogEvents
+          Resource: '*'
+
+package:
+  artifact: target/old-stuff-donation-aws.jar
+
+functions:
+  processDonation:
+    name: process-donation
+    handler: org.springframework.cloud.function.adapter.aws.FunctionInvoker
+    events:
+      - http:
+          path: /api/donations
+          method: post
+          cors: true
+    environment:
+      SPRING_CLOUD_FUNCTION_DEFINITION: donationFunction
+      MAIN_CLASS: com.tangdocu.old_stuff_donation.OldStuffDonationApplication
+    snapStart: true
