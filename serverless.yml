@@ -4,11 +4,11 @@ frameworkVersion: '3'
 
 provider:
   name: aws
-  runtime: java11
+  runtime: java17
   region: ap-southeast-1
   timeout: 30
   memorySize: 256
-  architecture: x86_64
+  architecture: arm64
   versionFunctions: true
   iam:
     role:

@@ -10,12 +10,12 @@
 	<description>Old Stuff Donation Application</description>
 	
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring-boot.version>2.7.18</spring-boot.version>
-		<spring-cloud.version>2021.0.8</spring-cloud.version>
+		<spring-boot.version>3.2.3</spring-boot.version>
+		<spring-cloud.version>2023.0.0</spring-cloud.version>
 		<aws-lambda-java-core.version>1.2.3</aws-lambda-java-core.version>
 		<aws-lambda-java-events.version>3.11.4</aws-lambda-java-events.version>
 		<lombok.version>1.18.30</lombok.version>
@@ -73,7 +73,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-function-web</artifactId>
+			<artifactId>spring-cloud-starter-function-web</artifactId>
 		</dependency>
 
 		<!-- Lombok -->
@@ -89,6 +89,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- AWS Lambda Serialization -->
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-lambda-java-serialization</artifactId>
+			<version>1.1.5</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -103,6 +110,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>3.1.5</version>
                 <dependencies>
                     <dependency>
                         <groupId>org.springframework.boot.experimental</groupId>
